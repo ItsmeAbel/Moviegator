@@ -1,47 +1,138 @@
+/* Glassmorphism Navbar */
 .navbar {
-  background-color: #000000;
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 1rem auto;
+  max-width: 1100px;
+  opacity: 0;
+  transform: translateY(-30px) scale(0.98);
+  animation: navbarFadeIn 1s cubic-bezier(.77,0,.18,1) 0.2s forwards;
 }
 
+@keyframes navbarFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Brand Styling */
 .navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: color 0.3s;
+}
+.navbar-brand:hover {
+  color: #ff6b81;
 }
 
+/* Links Container */
 .navbar-links {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
+/* Nav Links */
 .nav-link {
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  font-size: 1.1rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  color: #fff;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  animation: navLinkFadeIn 0.7s cubic-bezier(.77,0,.18,1) 0.7s forwards;
 }
 
+@keyframes navLinkFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Cool Hover Effect */
+.nav-link {
+  /* ...existing code... */
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 6px;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b81 0%, #f7b42c 100%);
+  border-radius: 2px;
+  transition: width 0.35s cubic-bezier(.77,0,.18,1);
+  z-index: 1;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
 .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  color: #ff6b81;
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 16px rgba(255, 107, 129, 0.12);
 }
 
-@media (max-width: 768px) {
+/* Mobile Responsive */
+@media (max-width: 900px) {
   .navbar {
-    padding: 1rem;
+    padding: 0.7rem 1rem;
+    max-width: 98vw;
   }
-
   .navbar-brand {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
-
   .navbar-links {
     gap: 1rem;
   }
-
   .nav-link {
-    padding: 0.5rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .nav-link {
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
   }
 }
