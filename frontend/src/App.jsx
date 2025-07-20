@@ -8,8 +8,8 @@ import { MovieProvider } from "./contexts/MovieContext";
 
 function App() {
   return (
-    <React.StrictMode>
-      <BrowserRouter>
+    
+     
         <MovieProvider>
           <div>
             <Navbar />
@@ -21,8 +21,8 @@ function App() {
             </main>
           </div>
         </MovieProvider>
-      </BrowserRouter>
-    </React.StrictMode>
+      
+   
   );
 }
 

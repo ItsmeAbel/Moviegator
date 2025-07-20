@@ -17,13 +17,13 @@ export const MovieProvider = ({children}) => {
   })
 
   //gets updated upon initial render
-  // useEffect(() => {
-  //   const storedFavs = localStorage.getItem("favorites")
+  useEffect(() => {
+    const storedFavs = localStorage.getItem("favorites")
 
-  //   if(storedFavs){
-  //     setFavorites(JSON.parse(storedFavs)); //parse converts the json list back to objects
-  //   }
-  // }, [])
+    if(storedFavs){
+      setFavorites(JSON.parse(storedFavs)); //parse converts the json list back to objects
+    }
+  }, [])
 
   //gets updated eachtime favorites is changed
   useEffect(() => {
