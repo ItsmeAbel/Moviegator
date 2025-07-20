@@ -1,22 +1,56 @@
 import "../css/Home.css";
 import MovieCard from "../components/MovieCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { searchMovies, getPopularMovies } from "../services/api2";
 
 function Home() {
-  //an array of movie objects
-  const movies = [
-    { id: 1, title: "Avengers", release_date: "2011" },
-    { id: 2, title: "Deadpool", release_date: "2016" },
-    { id: 3, title: "Guardians of the galaxy", release_date: "2019" },
-  ];
-
   //we use a hook or a state to store the value in the search bar for later use. Basics of state in react
   const [searchQuery, setSearchQuery] = useState(""); //setSearchQuery is used to assign a value to searchQuery
   //whenever a state change happens the entire component is re-renderd
 
-  const formSubmitHandler = (e) => {
+  //useEffects is used to avoid the list or api being called everytime the page gets rendered
+  //const movies = getPopularMovies() could also work but the api would be called up on each page rendering
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPopularMovies = async () => {
+      try {
+        const popularMovies = await getPopularMovies();
+        setMovies(popularMovies);
+      } catch (error) {
+        console.log(error);
+        setError("Failed to load movies!");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPopularMovies();
+  }, []);
+
+  const formSubmitHandler = async (e) => {
     e.preventDefault();
-    alert(searchQuery);
+    //trim can be used to ignore the leading empty spaces
+    if (!searchQuery.trim()) {
+      return;
+    }
+    //won't allow us to search while loading
+    if (loading) return;
+
+    setLoading(true); // we are loading while searching
+    try {
+      const searchResults = await searchMovies(searchQuery);
+      setMovies(searchResults);
+      setError(null);
+    } catch (error) {
+      console.log(error);
+      setError("Failed to search Movie!");
+    } finally {
+      setLoading(false);
+    }
+    setSearchQuery(""); //- empties the search bar upon submitting
   };
   //we can render the movie array individually but we gonna use mapping to
   //render them dynamically instead. with mapping it doesn't matter if we have
@@ -43,11 +77,21 @@ function Home() {
           Search
         </button>
       </form>
-      <div className="movies-grid">
-        {movies.map((Movie) => Movie.title.toLocaleLowerCase().startsWith(searchQuery) && (
-          <MovieCard Movie={Movie} key={Movie.id} />
-        ))}
-      </div>
+      
+
+      {error && <div className="error-message">{error}</div>}
+      {loading ? (
+        <div className="loading">Loading...</div>
+      ) : (
+        <div className="movies-grid">
+          {movies.map(
+            (Movie) =>
+              Movie.title.toLocaleLowerCase().startsWith(searchQuery) && (
+                <MovieCard Movie={Movie} key={Movie.id} />
+              )
+          )}
+        </div>
+      )}
     </div>
   );
 }
