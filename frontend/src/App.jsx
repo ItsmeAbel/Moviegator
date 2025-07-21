@@ -5,20 +5,27 @@ import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { MovieProvider } from "./contexts/MovieContext";
+import Purpose from "./pages/Purpose";
 
 function App() {
   return (
-    <MovieProvider>
-    <div>
-      <Navbar/>
-    <main className="main-content">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/favorites" element={<Favorites />} />
-      </Routes>
-    </main>
-    </div>
-    </MovieProvider>
+    
+     
+        <MovieProvider>
+          <div>
+            <Navbar />
+            <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer"><img className= "tmdb-logo" src="/tmdb.svg"></img></a>
+            <main className="main-content">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/purpose" element={<Purpose />} />
+              </Routes>
+            </main>
+          </div>
+        </MovieProvider>
+      
+   
   );
 }
 
