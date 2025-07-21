@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../css/MovieCard.css";
 import { useMovieContext } from "../contexts/MovieContext";
 
 function MovieCard({Movie}) {
   const { isFavorite, addToFavorites, removeFromFav} = useMovieContext();
   const favorite = isFavorite(Movie.id);
+
+  const [trailerKey, setTrailerKey] = useState(null);
 
   function onFavoriteClick(e) {
     //e.preventDefault()
@@ -18,6 +20,18 @@ function MovieCard({Movie}) {
       //alert("added");
     }
   }
+
+
+  //use effect for showing movie trailers
+  //useEffect(() => )
+  //shows rating
+  const rating = Movie.vote_average
+
+  let ratingEmoji = "";
+  if(rating >= 8) ratingEmoji = "🔥"
+  else if(rating >= 6) ratingEmoji = "🌟"
+  else if(rating >= 5)ratingEmoji = "🌙"
+  else ratingEmoji = "🗑️"
 
   return (
     <div className="movie-card">
@@ -37,7 +51,8 @@ function MovieCard({Movie}) {
       </div>
       <div className="movie-info">
         <h1>{Movie.title}</h1>
-        <p>{Movie.release_date}</p>
+        <p>{Movie.release_date}</p>  
+        <p className="rating">{ratingEmoji} {Movie.vote_average.toFixed(1)}</p>
       </div>
     </div>
   );
