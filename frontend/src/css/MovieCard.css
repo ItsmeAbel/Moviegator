@@ -64,7 +64,26 @@
   justify-content: center;
   transition: background-color 0.2s;
 }
+.trailer-btn{
+  position: relative;
+  bottom: 16%;
+  color: white;
+  left: 39%;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  align-items: center;
+  transition: background-color 0.2s;
+}
 
+.trailer-btn.moved {
+  bottom: -14%;
+}
+.trailer-btn:hover{
+  transform: scale(1.4);
+}
 .favorite-btn:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }

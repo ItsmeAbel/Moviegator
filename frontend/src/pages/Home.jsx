@@ -77,7 +77,9 @@ function Home() {
           Search
         </button>
       </form>
-      
+            <div className="top-movies">
+        <h2>Top Movies Today...</h2>
+      </div>
 
       {error && <div className="error-message">{error}</div>}
       {loading ? (
