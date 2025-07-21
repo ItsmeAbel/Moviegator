@@ -9,6 +9,7 @@ function Favorites() {
     return (
       <div className="favorites">
         <h2> Your Favorits...</h2>
+        <h3 className="inline-box">Movies: {favorites.length}</h3>
         <div className="movies-grid">
           {favorites.map((Movie) => (
             <MovieCard Movie={Movie} key={Movie.id} />

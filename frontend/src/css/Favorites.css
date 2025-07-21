@@ -8,10 +8,24 @@
   margin-bottom: 2rem;
   text-align: center;
   font-size: 2.5rem;
-  color: #ffffff;
+  color: #f20f0f;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.favorites h3 {
+  margin-right: 2rem;
+  text-align: right;
+  font-size: 1.1rem;
+  color: #864815;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.inline-box {
+  border: 1px solid #d2f316;
+  padding: 4px 8px 4px;
+  background-color: #d9e715;
+  margin-left: 90%;
+
+}
 .favorites-empty {
   text-align: center;
   padding: 4rem 2rem;
