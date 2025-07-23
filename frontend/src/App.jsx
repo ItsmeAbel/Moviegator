@@ -6,6 +6,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { MovieProvider } from "./contexts/MovieContext";
 import Purpose from "./pages/Purpose";
+import User from "./pages/User"
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/purpose" element={<Purpose />} />
+                <Route path="/user" element={<User />} />
+
               </Routes>
             </main>
           </div>
