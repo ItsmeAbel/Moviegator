@@ -6,7 +6,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
 function MovieCard({ Movie }) {
-  const { isFavorite, addToFavorites, removeFromFav } = useMovieContext();
+  const { isFavorite, addToFavorites, removeFromFav, setFavoritesToFirestore, removeFavoritesFromFirestore} = useMovieContext();
   const favorite = isFavorite(Movie.id);
 
   const [trailerKey, setTrailerKey] = useState(null);
@@ -18,8 +18,10 @@ function MovieCard({ Movie }) {
     if (favorite) {
       //alert(Movie.id);
       removeFromFav(Movie.id);
+      removeFavoritesFromFirestore(Movie.id);
     } else {
       addToFavorites(Movie);
+      setFavoritesToFirestore(Movie);
       //alert("added");
     }
   }

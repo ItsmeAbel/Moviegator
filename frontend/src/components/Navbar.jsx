@@ -31,7 +31,7 @@ function Navbar() {
       <div className="auth-section">
         {user ? (
           <>
-            <span>{user.displayName}  </span>
+            <Link to="/user">{user.displayName}</Link>
             <button onClick={logout}>⍈</button>
           </>
         ) : (
