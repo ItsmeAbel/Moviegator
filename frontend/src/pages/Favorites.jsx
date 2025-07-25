@@ -9,6 +9,7 @@ function Favorites() {
     return (
       <div className="favorites">
         <h2> Your Favorits...</h2>
+        <p> List is saved locally but you can login to save and sync your list across devices //Abel </p>
         <h3 className="inline-box">Movies: {favorites.length}</h3>
         <div className="movies-grid">
           {favorites.map((Movie) => (

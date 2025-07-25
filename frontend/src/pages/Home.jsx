@@ -14,6 +14,8 @@ function Home() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [searched, hasSearched] = useState(false); //used to track if user has searched or not
+
   useEffect(() => {
     const loadPopularMovies = async () => {
       try {
@@ -49,8 +51,9 @@ function Home() {
       setError("Failed to search Movie!");
     } finally {
       setLoading(false);
+      setSearchQuery(""); //- empties the search bar upon submitting
+      //hasSearched(true);
     }
-    setSearchQuery(""); //- empties the search bar upon submitting
   };
   //we can render the movie array individually but we gonna use mapping to
   //render them dynamically instead. with mapping it doesn't matter if we have
@@ -70,15 +73,14 @@ function Home() {
           placeholder="Search movies..."
           className="search-input"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => {setSearchQuery(e.target.value);  hasSearched(true)}}
         ></input>
-
         <button type="submit" className="search-button">
           Search
         </button>
       </form>
-            <div className="top-movies">
-        <h2>Top Movies Today...</h2>
+      <div className="top-movies">
+        {!searched && <h2>Top Movies Today</h2>}
       </div>
 
       {error && <div className="error-message">{error}</div>}
@@ -93,6 +95,7 @@ function Home() {
               )
           )}
         </div>
+        
       )}
     </div>
   );

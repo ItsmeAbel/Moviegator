@@ -2,6 +2,8 @@ import { Link, useNavigate} from "react-router-dom";
 import "../css/Navbar.css"
 import {useAuth} from "../contexts/AuthContext"
 import {FaGoogle} from "react-icons/fa"
+import {FaHome} from "react-icons/fa"
+import {FaHeart} from "react-icons/fa"
 
 function Navbar() {
 
@@ -20,10 +22,10 @@ function Navbar() {
       </div>
       <div className="navbar-links">
         <Link to="/" className="nav-link">
-          Home
+          <FaHome/>
         </Link>
         <Link to="/favorites" className="nav-link">
-          Favorites
+          <FaHeart style={{ color: 'red' }} />
         </Link>
         <Link to="/purpose" className="nav-link">
           Purpose
@@ -31,11 +33,11 @@ function Navbar() {
       <div className="auth-section">
         {user ? (
           <>
-            <Link to="/user">{user.displayName}</Link>
-            <button onClick={logout}>⍈</button>
+            <Link className = "nav-link" style = {{color: 'yellow', marginRight: '8px'}} to="/user">{user.displayName}</Link>
+            <button className = "nav-link" onClick={logout}>⍈</button>
           </>
         ) : (
-          <button onClick={handleLogin}><FaGoogle/></button>
+          <button className = "nav-link" onClick={handleLogin}><FaGoogle/></button>
         )}
       </div>
       </div>
