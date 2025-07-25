@@ -21,8 +21,8 @@ function Navbar() {
         <Link to="/">Moviegator</Link>
       </div>
       <div className="navbar-links">
-        <Link to="/" className="nav-link">
-          <FaHome/>
+        <Link to="/" className="nav-link" >
+          <FaHome />
         </Link>
         <Link to="/favorites" className="nav-link">
           <FaHeart style={{ color: 'red' }} />

@@ -8,8 +8,11 @@ import { MovieProvider } from "./contexts/MovieContext";
 import Purpose from "./pages/Purpose";
 import User from "./pages/User";
 import ProtectedRoute from "./services/ProtectedRoute";
+import { useLocation } from "react-router-dom"; //used for remounting/rerendering a page upon location key change
 
 function App() {
+  const location = useLocation();
+
   return (
     <MovieProvider>
       <div>
@@ -23,7 +26,7 @@ function App() {
         </a>
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home key={location.key}/>} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/purpose" element={<Purpose />} />
             <Route path="/user" element={<ProtectedRoute><User /></ProtectedRoute>} />

@@ -16,7 +16,6 @@ function Home() {
   const [page, setPage] = useState(1); //gets more pages from the most popular movies of the day
 
   const [searched, hasSearched] = useState(false); //used to track if user has searched or not
-
   useEffect(() => {
     const loadPopularMovies = async () => {
       try {
