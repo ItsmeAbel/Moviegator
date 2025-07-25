@@ -13,14 +13,15 @@ function Home() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1); //gets more pages from the most popular movies of the day
 
   const [searched, hasSearched] = useState(false); //used to track if user has searched or not
 
   useEffect(() => {
     const loadPopularMovies = async () => {
       try {
-        const popularMovies = await getPopularMovies();
-        setMovies(popularMovies);
+        const popularMovies = await getPopularMovies(page);
+        setMovies((prev) => [...prev, ...popularMovies]);
       } catch (error) {
         console.log(error);
         setError("Failed to load movies!");
@@ -30,8 +31,11 @@ function Home() {
     };
 
     loadPopularMovies();
-  }, []);
+  }, [page]);
 
+  const loadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
   const formSubmitHandler = async (e) => {
     e.preventDefault();
     //trim can be used to ignore the leading empty spaces
@@ -73,15 +77,16 @@ function Home() {
           placeholder="Search movies..."
           className="search-input"
           value={searchQuery}
-          onChange={(e) => {setSearchQuery(e.target.value);  hasSearched(true)}}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            hasSearched(true);
+          }}
         ></input>
         <button type="submit" className="search-button">
           Search
         </button>
       </form>
-      <div className="top-movies">
-        {!searched && <h2>Top Movies Today</h2>}
-      </div>
+      <div className="top-movies">{!searched && <h2>Top Movies Today</h2>}</div>
 
       {error && <div className="error-message">{error}</div>}
       {loading ? (
@@ -95,7 +100,11 @@ function Home() {
               )
           )}
         </div>
-        
+      )}
+      {!loading && (
+        <button onClick={loadMore} className="load-more-btn">
+          Load More ...
+        </button>
       )}
     </div>
   );

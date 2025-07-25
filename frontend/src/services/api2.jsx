@@ -5,11 +5,12 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
 //async means we gonna wait a while to get the whole result since it takes time to do so
-export const getPopularMovies = async () => {
-  const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
+export async function getPopularMovies(page = 1) {
+  const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${page}`);
   const data = await response.json();
 
   return data.results;
+
 };
 
 export const searchMovies = async (query) => {
