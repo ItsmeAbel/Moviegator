@@ -36,4 +36,11 @@ export const getGenres = async () => {
   return data;
 };
 
+//to get movie recommendations
+export const getMovieRecommendations = async (movieId) => {
+  const response = await fetch(`${BASE_URL}/movie/${movieId}/recommendations?api_key=${API_KEY}&language=en-US`);
+  const data = await response.json();
+  return data.results; // array of recommended movies
+};
+
 

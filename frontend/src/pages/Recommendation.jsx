@@ -1,0 +1,67 @@
+import { useEffect, useState } from "react";
+import { useMovieContext } from "../contexts/MovieContext";
+import MovieCard from "../components/MovieCard";
+import { getMovieRecommendations } from "../services/api2";
+import "../css/Recommendation.css";
+
+function Recommendations() {
+  const { favorites } = useMovieContext();
+  const [recommendations, setRecommendations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(false);
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      if (favorites.length === 0) {
+        setRecommendations([]);
+        setLoading(false);
+        return;
+      }
+
+      const shuffled = [...favorites].sort(() => 0.5 - Math.random());
+      const randomFavorites = shuffled.slice(0, 2);
+      let allRecs = [];
+
+      for (const movie of randomFavorites) {
+        const recs = await getMovieRecommendations(movie.id);
+        allRecs = [...allRecs, ...recs];
+      }
+
+      // Remove duplicates and already favorited movies
+      const favoriteIds = new Set(favorites.map((m) => m.id));
+      const uniqueRecs = Array.from(
+        new Map(allRecs.map((m) => [m.id, m])).values()
+      ).filter((m) => !favoriteIds.has(m.id));
+
+      if(!refresh){
+
+      }
+      const sfld = [...uniqueRecs].sort(() => 0.5 - Math.random());
+      const randomFive = sfld.slice(0, 4);
+      setRecommendations(randomFive);
+      setLoading(false);
+    };
+
+    fetchRecommendations();
+  }, [favorites]);
+
+  return (
+    <div className="recommendations-page">
+      <h2>Recommended for You based on your favorites. Enjoy! </h2>
+      {/* <button className="refresh-btn" onClick={refreshButtonHandler}> Refresh </button> */}
+      {loading ? (
+        <p>Loading recommendations...</p>
+      ) : recommendations.length === 0 ? (
+        <p>No recommendations found. Add some favorites first!</p>
+      ) : (
+        <div className="movies-grid">
+          {recommendations.map((movie) => (
+            <MovieCard key={movie.id} Movie={movie} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Recommendations;

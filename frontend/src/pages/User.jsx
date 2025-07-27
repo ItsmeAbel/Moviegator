@@ -4,26 +4,39 @@ import { db } from "../services/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import MovieCard from "../components/MovieCard";
 import { useMovieContext } from "../contexts/MovieContext";
+import { Link } from "react-router-dom";
+import "../css/Favorites.css"
 
 function User() {
   const { user } = useAuth();
-  const {favorites} = useMovieContext();
+  const { favorites } = useMovieContext();
 
-  return (
-    <div className="favorites">
-      <h2>Welcome, {user?.displayName}</h2>
-      <h3>Your Favorite Movies</h3>
-      {favorites.length === 0 ? (
-        <p>No favorites yet.</p>
-      ) : (
+  if (favorites.length > 0) {
+    return (
+      <div className="favorites">
+        <h2>Welcome, {user?.displayName}</h2>
+        <div className="recommend-btn-container">
+          <Link to="/recommendation">
+            <button className="recommend-btn"> Recommend Me</button>
+          </Link>
+        </div>
+        <h3>Your Favorite Movies: {favorites.length}</h3>
+
         <div className="movies-grid">
           {favorites.map((movie) => (
             <MovieCard key={movie.id} Movie={movie} />
           ))}
         </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return (
+      <div className="favorites">
+        <h2>Welcome, {user?.displayName}</h2>
+        <p>No favorites yet.</p>
+      </div>
+    );
+  }
 }
 
 export default User;

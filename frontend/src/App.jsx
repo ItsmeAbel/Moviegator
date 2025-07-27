@@ -9,7 +9,7 @@ import Purpose from "./pages/Purpose";
 import User from "./pages/User";
 import ProtectedRoute from "./services/ProtectedRoute";
 import { useLocation } from "react-router-dom"; //used for remounting/rerendering a page upon location key change
-
+import Recommendation from "./pages/Recommendation"
 function App() {
   const location = useLocation();
 
@@ -37,6 +37,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path = "/recommendation" element={<Recommendation />} />
           </Routes>
         </main>
       </div>
