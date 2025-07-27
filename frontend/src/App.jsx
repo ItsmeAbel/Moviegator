@@ -26,10 +26,17 @@ function App() {
         </a>
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Home key={location.key}/>} />
+            <Route path="/" element={<Home key={location.key} />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/purpose" element={<Purpose />} />
-            <Route path="/user" element={<ProtectedRoute><User /></ProtectedRoute>} />
+            <Route
+              path="/user"
+              element={
+                <ProtectedRoute>
+                  <User />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </main>
       </div>

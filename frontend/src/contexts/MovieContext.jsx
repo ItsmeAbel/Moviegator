@@ -9,7 +9,7 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
-  onSnapshot
+  onSnapshot,
 } from "firebase/firestore";
 import { useAuth } from "./AuthContext";
 

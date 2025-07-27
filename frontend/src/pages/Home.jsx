@@ -1,7 +1,7 @@
 import "../css/Home.css";
 import MovieCard from "../components/MovieCard";
 import { useState, useEffect } from "react";
-import { searchMovies, getPopularMovies } from "../services/api2";
+import { searchMovies, getPopularMovies} from "../services/api2";
 
 function Home() {
   //we use a hook or a state to store the value in the search bar for later use. Basics of state in react
@@ -95,7 +95,7 @@ function Home() {
           {movies.map(
             (Movie) =>
               Movie.title.toLocaleLowerCase().startsWith(searchQuery) && (
-                <MovieCard Movie={Movie} key={Movie.id} />
+                <MovieCard Movie={Movie} key={Movie.id}/>
               )
           )}
         </div>

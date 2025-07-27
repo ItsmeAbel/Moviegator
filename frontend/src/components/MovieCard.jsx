@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import "../css/MovieCard.css";
 import { useMovieContext } from "../contexts/MovieContext";
+import { getGenres } from "../services/api2";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
 function MovieCard({ Movie }) {
-  const { isFavorite, addToFavorites, removeFromFav, setFavoritesToFirestore, removeFavoritesFromFirestore} = useMovieContext();
+  const {
+    isFavorite,
+    addToFavorites,
+    removeFromFav,
+    setFavoritesToFirestore,
+    removeFavoritesFromFirestore,
+  } = useMovieContext();
   const favorite = isFavorite(Movie.id);
 
   const [trailerKey, setTrailerKey] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
+  const [genres, setGenres] = useState([]);
 
   function onFavoriteClick(e) {
     //e.preventDefault()
@@ -48,11 +56,21 @@ function MovieCard({ Movie }) {
   //shows rating
   const rating = Movie.vote_average;
 
+  //some nesting here but it shall do for the time being
   let ratingEmoji = "";
   if (rating >= 8) ratingEmoji = "🔥";
   else if (rating >= 6) ratingEmoji = "🌟";
   else if (rating >= 5) ratingEmoji = "🌙";
   else ratingEmoji = "🗑️";
+
+  //fetches movie genres
+  useEffect(() => {
+    const loadGenres = async () => {
+      const data = await getGenres(); // API call
+      setGenres(data.genres);
+    };
+    loadGenres();
+  }, []);
 
   return (
     <div className="movie-card">
@@ -72,16 +90,18 @@ function MovieCard({ Movie }) {
             alt={Movie.title}
           />
         )}
-          <button
-            className={`favorite-btn ${favorite ? "active" : ""}`}
-            onClick={onFavoriteClick}
-          >
-            ♥
-          </button>
-          <button className={`trailer-btn ${showTrailer ? "moved" : ""}`} onClick={fetchTrailer}>
-            {showTrailer ? "🟥" : "▶"}
-          </button>
-        
+        <button
+          className={`favorite-btn ${favorite ? "active" : ""}`}
+          onClick={onFavoriteClick}
+        >
+          ♥
+        </button>
+        <button
+          className={`trailer-btn ${showTrailer ? "moved" : ""}`}
+          onClick={fetchTrailer}
+        >
+          {showTrailer ? "🟥" : "▶"}
+        </button>
       </div>
       <div className="movie-info">
         <h1>{Movie.title}</h1>
