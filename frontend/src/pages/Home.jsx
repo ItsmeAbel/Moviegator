@@ -83,7 +83,7 @@ function Home() {
           }}
         ></input>
         <button type="submit" className="search-button">
-          Search
+          🔍︎
         </button>
       </form>
       <div className="top-movies">{!searched && <h2>Top Movies Today</h2>}</div>
@@ -103,7 +103,7 @@ function Home() {
       )}
       {!loading && (
         <button onClick={loadMore} className="load-more-btn">
-          Load More ...
+          Load More ˋ°•*⁀➷
         </button>
       )}
     </div>

@@ -17,7 +17,9 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link to="/">Moviegator</Link>
+        <Link to="/">🐊MovieGator
+        <p style={{marginLeft: "6%" }}>Your Movie Navigator</p>
+        </Link>
       </div>
       <div className="navbar-links">
         <Link to="/" className="nav-link">
@@ -27,7 +29,7 @@ function Navbar() {
           <FaHeart style={{ color: "red" }} />
         </Link>
         <Link to="/purpose" className="nav-link">
-          Purpose
+          About
         </Link>
         <div className="auth-section">
           {user ? (
@@ -40,7 +42,7 @@ function Navbar() {
                 {user.displayName}
               </Link>
               <button className="nav-link" onClick={logout}>
-                ⍈
+                ✗
               </button>
             </>
           ) : (

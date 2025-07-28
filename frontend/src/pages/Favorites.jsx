@@ -10,11 +10,11 @@ function Favorites() {
     return (
       <div className="favorites">
         <h2> Your Favorits...</h2>
-        <p>
+        <p className="responsive-text">
           List is saved locally but you can login to save and sync your list
           across devices //Abel
         </p>
-        <p>
+        <p className="responsive-text">
           Use the <b style={{ color: "red" }}>I'm feeling luckey</b> button down
           below to get movie suggestions based on your favorites!
         </p>

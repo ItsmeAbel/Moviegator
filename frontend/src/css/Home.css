@@ -31,6 +31,7 @@
 .search-button {
   padding: 0.75rem 1.5rem;
   background-color: #e50914;
+  opacity: 60%;
   color: white;
   border-radius: 4px;
   font-weight: 500;
@@ -40,6 +41,7 @@
 
 .search-button:hover {
   background-color: #f40612;
+  opacity: 100%;
 }
 
 
@@ -66,4 +68,10 @@
 position: relative;
 left: 1%;
 color: #e50914;
+}
+
+.load-more-btn {
+
+  position: relative;
+  left: 50%;
 }

@@ -44,6 +44,14 @@
   align-items: center;
 }
 
+p {
+  color: #daa425;
+  font-size: 1.05rem;
+  line-height: 0.8;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 /* Nav Links */
 .nav-link {
   font-size: 1.1rem;
