@@ -32,6 +32,7 @@ function Home() {
     loadPopularMovies();
   }, [page, searched]);
 
+  //sets the next page to load
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
   };

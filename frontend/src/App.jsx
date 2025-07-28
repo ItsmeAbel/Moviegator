@@ -17,13 +17,16 @@ function App() {
     <MovieProvider>
       <div>
         <Navbar />
+        <div className="tmdb-div">
         <a
           href="https://www.themoviedb.org/"
           target="_blank"
           rel="noopener noreferrer"
         >
+          
           <img className="tmdb-logo" src="/tmdb.svg"></img>
         </a>
+        </div>
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home key={location.key} />} />

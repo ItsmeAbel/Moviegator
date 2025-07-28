@@ -16,7 +16,7 @@ function Favorites() {
         </p>
         <div className="recommend-btn-container">
         <Link to="/recommendation">
-          <button className="recommend-btn"> Recommend Me</button>
+          <button className="recommend-btn"> I'm feeling lucky!</button>
         </Link>
         </div >
         <h3 className="inline-box">Movies: {favorites.length}</h3>
