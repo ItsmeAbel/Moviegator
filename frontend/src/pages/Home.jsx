@@ -14,7 +14,6 @@ function Home() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1); //gets more pages from the most popular movies of the day
-  const [isHome, setHome] = useState(true);
 
   const [searched, hasSearched] = useState(false); //used to track if user has searched or not
   useEffect(() => {
@@ -31,7 +30,7 @@ function Home() {
     };
 
     loadPopularMovies();
-  }, [page]);
+  }, [page, searched]);
 
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);

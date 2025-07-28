@@ -3,12 +3,13 @@ import { useMovieContext } from "../contexts/MovieContext";
 import MovieCard from "../components/MovieCard";
 import { getMovieRecommendations } from "../services/api2";
 import "../css/Recommendation.css";
+import { FiRefreshCw } from "react-icons/fi";
 
 function Recommendations() {
   const { favorites } = useMovieContext();
   const [recommendations, setRecommendations] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [refresh, setRefresh] = useState(false);
+  const [Reccs, setReccs] = useState([]);
 
   useEffect(() => {
     const fetchRecommendations = async () => {
@@ -33,10 +34,9 @@ function Recommendations() {
         new Map(allRecs.map((m) => [m.id, m])).values()
       ).filter((m) => !favoriteIds.has(m.id));
 
-      if(!refresh){
 
-      }
       const sfld = [...uniqueRecs].sort(() => 0.5 - Math.random());
+      setReccs(uniqueRecs)
       const randomFive = sfld.slice(0, 4);
       setRecommendations(randomFive);
       setLoading(false);
@@ -45,10 +45,15 @@ function Recommendations() {
     fetchRecommendations();
   }, [favorites]);
 
+  const refreshButtonHandler = () =>{
+    const sfld = [...Reccs].sort(() => 0.5 - Math.random());
+      const randomFive = sfld.slice(0, 4);
+      setRecommendations(randomFive);
+  }
   return (
     <div className="recommendations-page">
-      <h2>Recommended for You based on your favorites. Enjoy! </h2>
-      {/* <button className="refresh-btn" onClick={refreshButtonHandler}> Refresh </button> */}
+      <h2>Recommended for You based on your favorites. Enjoy! <button onClick={refreshButtonHandler}> <FiRefreshCw style={{color: "cyan", fontSize: "24px"}}/> </button></h2>
+      
       {loading ? (
         <p>Loading recommendations...</p>
       ) : recommendations.length === 0 ? (
