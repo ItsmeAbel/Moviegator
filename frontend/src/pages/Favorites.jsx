@@ -14,11 +14,15 @@ function Favorites() {
           List is saved locally but you can login to save and sync your list
           across devices //Abel
         </p>
+        <p>
+          Use the <b style={{ color: "red" }}>I'm feeling luckey</b> button down
+          below to get movie suggestions based on your favorites!
+        </p>
         <div className="recommend-btn-container">
-        <Link to="/recommendation">
-          <button className="recommend-btn"> I'm feeling lucky!</button>
-        </Link>
-        </div >
+          <Link to="/recommendation">
+            <button className="recommend-btn"> I'm feeling lucky!</button>
+          </Link>
+        </div>
         <h3 className="inline-box">Movies: {favorites.length}</h3>
 
         <div className="movies-grid">

@@ -1,15 +1,17 @@
 import "./css/App.css";
-import MovieCard from "./components/MovieCard";
-import Favorites from "./pages/Favorites";
-import Home from "./pages/Home";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import { MovieProvider } from "./contexts/MovieContext";
-import Purpose from "./pages/Purpose";
-import User from "./pages/User";
-import ProtectedRoute from "./services/ProtectedRoute";
 import { useLocation } from "react-router-dom"; //used for remounting/rerendering a page upon location key change
-import Recommendation from "./pages/Recommendation"
+import React, { lazy, Suspense } from "react";
+
+const Favorites = lazy(() => import("./pages/Favorites"));
+const Home = lazy(() => import("./pages/Home"));
+const Navbar = lazy(() => import("./components/Navbar"));
+const Purpose = lazy(() => import("./pages/Purpose"));
+const User = lazy(() => import("./pages/User"));
+const ProtectedRoute = lazy(() => import("./services/ProtectedRoute"));
+const Recommendation = lazy(() => import("./pages/Recommendation"));
+
 function App() {
   const location = useLocation();
 

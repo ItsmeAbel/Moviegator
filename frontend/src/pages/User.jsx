@@ -5,7 +5,7 @@ import { doc, getDoc } from "firebase/firestore";
 import MovieCard from "../components/MovieCard";
 import { useMovieContext } from "../contexts/MovieContext";
 import { Link } from "react-router-dom";
-import "../css/Favorites.css"
+import "../css/Favorites.css";
 
 function User() {
   const { user } = useAuth();
@@ -15,13 +15,19 @@ function User() {
     return (
       <div className="favorites">
         <h2>Welcome, {user?.displayName}</h2>
+        <p>
+          Here are your favorite movies saved and synced on the cloud
+        </p>
+        <p>
+          Use the <b style={{ color: "red" }}>I'm feeling lucky!</b> button down
+          below to get movie suggestions based on your favorites
+        </p>
         <div className="recommend-btn-container">
           <Link to="/recommendation">
             <button className="recommend-btn"> I'm feeling lucky</button>
           </Link>
         </div>
         <h3>Your Favorite Movies: {favorites.length}</h3>
-
         <div className="movies-grid">
           {favorites.map((movie) => (
             <MovieCard key={movie.id} Movie={movie} />
