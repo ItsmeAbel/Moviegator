@@ -3,7 +3,6 @@ import { useMovieContext } from "../contexts/MovieContext";
 import MovieCard from "../components/MovieCard";
 import { getMovieRecommendations } from "../services/api2";
 import "../css/Recommendation.css";
-import { FiRefreshCw } from "react-icons/fi";
 
 function Recommendations() {
   const { favorites } = useMovieContext();
@@ -52,7 +51,7 @@ function Recommendations() {
   }
   return (
     <div className="recommendations-page">
-      <h2>Recommended for You based on your favorites. Enjoy! <button onClick={refreshButtonHandler}> <FiRefreshCw style={{color: "cyan", fontSize: "24px"}}/> </button></h2>
+      <h2>Recommended for You based on your favorites. Enjoy! <button onClick={refreshButtonHandler}> <h2 style={{color: "cyan", fontSize: "124%"}}>↺</h2></button></h2>
       
       {loading ? (
         <p>Loading recommendations...</p>

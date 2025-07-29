@@ -1,9 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../css/Navbar.css";
 import { useAuth } from "../contexts/AuthContext";
-import { FaGoogle } from "react-icons/fa";
-import { FaHome } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
 
 function Navbar() {
   const { user, login, logout } = useAuth();
@@ -16,17 +13,17 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">
+      <div className="navbar-brand" style={{marginTop: "-0.6%" }}>
         <Link to="/">🐊MovieGator
         <p style={{marginLeft: "6%" }}>Your Movie Navigator</p>
         </Link>
       </div>
       <div className="navbar-links">
         <Link to="/" className="nav-link">
-          <FaHome />
+        <h4 style={{fontSize: "110%"}}>🏠︎</h4>
         </Link>
         <Link to="/favorites" className="nav-link">
-          <FaHeart style={{ color: "red" }} />
+        <h4 style={{ color: "red", fontSize: "110%"}}>❤︎</h4>
         </Link>
         <Link to="/purpose" className="nav-link">
           About
@@ -47,7 +44,7 @@ function Navbar() {
             </>
           ) : (
             <button className="nav-link" onClick={handleLogin}>
-              <FaGoogle />
+              <h2>G</h2>
             </button>
           )}
         </div>
