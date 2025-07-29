@@ -38,7 +38,12 @@ function Navbar() {
               >
                 {user.displayName}
               </Link>
-              <button className="nav-link" onClick={logout}>
+              <button className="nav-link" onClick={()=> {
+                const confirmLogout = window.confirm("Sure you wanna log out?");
+                if(confirmLogout){
+                  logout();
+                }
+              }}>
                 ✗
               </button>
             </>

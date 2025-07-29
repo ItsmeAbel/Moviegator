@@ -42,7 +42,7 @@ function Recommendations() {
     };
 
     fetchRecommendations();
-  }, [favorites]);
+  }, []);
 
   const refreshButtonHandler = () =>{
     const sfld = [...Reccs].sort(() => 0.5 - Math.random());
