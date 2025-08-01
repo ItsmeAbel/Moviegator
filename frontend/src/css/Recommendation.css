@@ -1,7 +1,7 @@
 .recommendations-page {
   padding: 2rem;
   background-color: #121212;
-  color: #ffffff;
+  color: #f7950b;
   min-height: 100vh;
 }
 
@@ -42,24 +42,5 @@
   color: #fff;
 }
 
-.back-to-favorites {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-}
-
-.back-to-favorites button {
-  padding: 10px 20px;
-  background-color: #e50914;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.back-to-favorites button:hover {
-  transform: scale(1.05);
-}
 
 

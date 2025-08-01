@@ -51,7 +51,7 @@ function Recommendations() {
   }
   return (
     <div className="recommendations-page">
-      <h2>Recommended for You based on your favorites. Enjoy! <button onClick={refreshButtonHandler}> <h2 style={{color: "cyan", fontSize: "124%"}}>↺</h2></button></h2>
+      <h2>Recommended for You based on your favorites. Enjoy! <button style={{ backgroundColor: "transparent", color: "red", fontSize: "124%"}} onClick={refreshButtonHandler}>↺</button></h2>
       
       {loading ? (
         <p>Loading recommendations...</p>
