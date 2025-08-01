@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../css/MovieCard.css";
 import { useMovieContext } from "../contexts/MovieContext";
-//import { getGenres } from "../services/api2";
 import { genreMap } from "../services/genres"; //to map genre names to genre ids that are already returned in the movie object
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -63,15 +62,6 @@ function MovieCard({ Movie }) {
   else if (rating >= 6) ratingEmoji = "🌟";
   else if (rating >= 5) ratingEmoji = "🌙";
   else ratingEmoji = "🗑️";
-
-  //fetches movie genres
-  // useEffect(() => {
-  //   const loadGenres = async () => {
-  //     const data = await getGenres(); // API call
-  //     setGenres(data.genres);
-  //   };
-  //   loadGenres();
-  // }, []);
 
   return (
     <div className="movie-card">

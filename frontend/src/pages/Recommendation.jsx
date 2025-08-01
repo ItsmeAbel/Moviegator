@@ -33,9 +33,8 @@ function Recommendations() {
         new Map(allRecs.map((m) => [m.id, m])).values()
       ).filter((m) => !favoriteIds.has(m.id));
 
-
       const sfld = [...uniqueRecs].sort(() => 0.5 - Math.random());
-      setReccs(uniqueRecs)
+      setReccs(uniqueRecs);
       const randomFive = sfld.slice(0, 4);
       setRecommendations(randomFive);
       setLoading(false);
@@ -44,15 +43,27 @@ function Recommendations() {
     fetchRecommendations();
   }, []);
 
-  const refreshButtonHandler = () =>{
+  const refreshButtonHandler = () => {
     const sfld = [...Reccs].sort(() => 0.5 - Math.random());
-      const randomFive = sfld.slice(0, 4);
-      setRecommendations(randomFive);
-  }
+    const randomFive = sfld.slice(0, 4);
+    setRecommendations(randomFive);
+  };
   return (
     <div className="recommendations-page">
-      <h2>Recommended for You based on your favorites. Enjoy! <button style={{ backgroundColor: "transparent", color: "red", fontSize: "124%"}} onClick={refreshButtonHandler}>↺</button></h2>
-      
+      <h2>
+        Recommended for You based on your favorites. Enjoy!{" "}
+        <button
+          style={{
+            backgroundColor: "transparent",
+            color: "red",
+            fontSize: "124%",
+          }}
+          onClick={refreshButtonHandler}
+        >
+          ↺
+        </button>
+      </h2>
+
       {loading ? (
         <p>Loading recommendations...</p>
       ) : recommendations.length === 0 ? (
