@@ -106,7 +106,9 @@
   padding: 1rem;
   flex: 1;
   display: flex;
-  flex-direction: column;
+  color: #e48304;
+  flex-direction:column;
+  text-align: center;
   gap: 0.5rem;
 }
 
@@ -120,10 +122,9 @@
   font-size: 0.9rem;
 }
 
-.user-rating {
-  color: #ffd700;
+.rating {
+  color: #f20cf2;
   font-size: 0.9rem;
-  margin-top: auto;
 }
 
 @media (max-width: 768px) {
@@ -140,4 +141,24 @@
     height: 32px;
     font-size: 1.2rem;
   }
+}
+
+/* for the genres key words*/
+.genres {
+  display: flex;
+  justify-content: center;  /* centers horizontally */
+  flex-wrap: wrap;          /* allows tags to wrap */
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.genre-tag {
+  background-color: rgba(34, 3, 3, 0.47);;
+  color: #e48304;
+  padding: 4px 8px;
+  justify-content: center;
+  margin: 2px;
+  border-radius: 20%;
+  font-size: 82%;
+  display: inline-block;
 }

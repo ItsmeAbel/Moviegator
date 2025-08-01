@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "../css/MovieCard.css";
 import { useMovieContext } from "../contexts/MovieContext";
-import { getGenres } from "../services/api2";
+//import { getGenres } from "../services/api2";
+import { genreMap } from "../services/genres"; //to map genre names to genre ids that are already returned in the movie object
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -64,13 +65,13 @@ function MovieCard({ Movie }) {
   else ratingEmoji = "🗑️";
 
   //fetches movie genres
-  useEffect(() => {
-    const loadGenres = async () => {
-      const data = await getGenres(); // API call
-      setGenres(data.genres);
-    };
-    loadGenres();
-  }, []);
+  // useEffect(() => {
+  //   const loadGenres = async () => {
+  //     const data = await getGenres(); // API call
+  //     setGenres(data.genres);
+  //   };
+  //   loadGenres();
+  // }, []);
 
   return (
     <div className="movie-card">
@@ -109,6 +110,13 @@ function MovieCard({ Movie }) {
         <p className="rating">
           {ratingEmoji} {Movie.vote_average.toFixed(1)}
         </p>
+        <div className="genres">
+          {Movie.genre_ids?.map((id) => (
+            <span key={id} className="genre-tag">
+              {genreMap[id]}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

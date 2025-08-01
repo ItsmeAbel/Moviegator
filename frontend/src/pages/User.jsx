@@ -19,8 +19,8 @@ function User() {
           Here are your favorite movies saved and synced on the cloud
         </p>
         <p className="responsive-text">
-          Use the <b style={{ color: "red" }}>I'm feeling lucky!</b> button down
-          below to get movie suggestions based on your favorites
+          Use the <b style={{ color: "red" }}>I'm feeling lucky! </b> button
+          down below to get movie suggestions based on your favorites
         </p>
         <div className="recommend-btn-container">
           <Link to="/recommendation">
